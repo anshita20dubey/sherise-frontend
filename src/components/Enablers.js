@@ -94,7 +94,7 @@ const Enablers = ({ enablersRef, isVisible }) => {
             className="py-12 md:py-24 bg-gradient-to-b from-[#121212] to-black text-white"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                <div className={`text-center mb-8 md:mb-16 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                <div className="text-center mb-8 md:mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">
                         Our <span className="text-[#48d494]">Enablers</span>
                     </h2>
@@ -104,7 +104,7 @@ const Enablers = ({ enablersRef, isVisible }) => {
                     </p>
                 </div>
 
-                <div className={`relative max-w-5xl mx-auto transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                <div className="relative max-w-5xl mx-auto transition-all duration-1000 delay-300">
                     {/* Slider navigation arrows - hidden on smallest screens */}
                     <button
                         onClick={prevSlide}
@@ -199,7 +199,7 @@ const Enablers = ({ enablersRef, isVisible }) => {
                 </div>
 
                 {/* View all enablers button */}
-                <div className={`text-center mt-8 md:mt-16 transition-all duration-1000 delay-600 ease-out ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                <div className={`text-center mt-8 md:mt-16 transition-all duration-1000 delay-600 `}>
                     <button
                         onClick={() => navigate('/allenablers')}
                         className="bg-[#48d494] text-black px-6 md:px-8 py-2 md:py-3 text-sm md:text-base rounded-md font-medium hover:bg-[#3bc17f] transition-colors inline-flex items-center"
