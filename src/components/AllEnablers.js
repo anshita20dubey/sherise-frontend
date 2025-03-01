@@ -10,7 +10,7 @@ const AllEnablers = () => {
         {
             id: 1,
             name: "Neha Tiwari",
-            photo: "../../images/Enablers/NehaTiwari.png",
+            photo: "../../images/Enablers/NehaTiwari.jpg",
             title: "Startup Angel Investor",
             description: "Mrs Universe Aesthetic 2024, Mrs Indian Ocean Universe 2024, Winner of Mrs Central India 2023, Mrs. MP 2022 RU",
             expertise: ["Funding", "Leadership", "Tech"],
@@ -20,7 +20,7 @@ const AllEnablers = () => {
         {
             id: 2,
             name: "Priya Tiwari",
-            photo: "../../images/Enablers/PriyaTiwari.png",
+            photo: "../../images/Enablers/PriyaTiwari.jpg",
             title: "North Zone Winner",
             description: "Walked at Bombay Times, First Runner up",
             expertise: ["Venture Capital", "Early-stage Investments", "Beauty"],
@@ -29,8 +29,18 @@ const AllEnablers = () => {
         },
         {
             id: 3,
+            name: "Preeti Chaudhary",
+            photo: "../../images/Enablers/PreetiChaudhary.jpg",
+            title: "North Zone Winner",
+            description: "Walked at Bombay Times, First Runner up",
+            expertise: ["Venture Capital", "Early-stage Investments", "Beauty"],
+            region: "India",
+            yearsOfExperience: 12
+        },
+        {
+            id: 4,
             name: "Poojashree Chouksey",
-            photo: "../../images/Enablers/PoojashreeChouksey.png",
+            photo: "../../images/Enablers/PoojashreeChouksey.jpg",
             title: "Executive Director of the LNCT Group",
             description: "Founded the Kalakunj Foundation",
             expertise: ["Mentorship", "Non-profit", "Social Impact"],
@@ -38,7 +48,7 @@ const AllEnablers = () => {
             yearsOfExperience: 10
         },
         {
-            id: 4,
+            id: 5,
             name: "Harpreet Kaur Reen",
             photo: "../../images/Enablers/HarpreetKaur.jpg",
             title: "Senior Reporter, IBC 24 NEWS",
@@ -48,7 +58,7 @@ const AllEnablers = () => {
             yearsOfExperience: 10
         },
         {
-            id: 5,
+            id: 6,
             name: "Sindhu Dholpure",
             photo: "../../images/Enablers/SindhuDholpure.jpg",
             title: "Founder, People's Theatre Group",
@@ -58,7 +68,7 @@ const AllEnablers = () => {
             yearsOfExperience: 8
         },
         {
-            id: 6,
+            id: 7,
             name: "Darshana Solanki",
             photo: "../../images/Enablers/DarshnaSolanki.jpg",
             title: "Co-founder, Recooty",
@@ -68,7 +78,7 @@ const AllEnablers = () => {
             yearsOfExperience: 8
         },
         {
-            id: 7,
+            id: 8,
             name: "Umang Shridhar",
             photo: "../../images/Enablers/UmangShridhar.jpg",
             title: "Founder/Director, UmangShridhar Designs Private limited",
@@ -78,7 +88,7 @@ const AllEnablers = () => {
             yearsOfExperience: 8
         },
         {
-            id: 8,
+            id: 9,
             name: "Sunila Dubey",
             photo: "../../images/Enablers/SunilaDubey.jpg",
             title: "Founder of Saree culture India, Odeon art and cultural society",
@@ -88,7 +98,7 @@ const AllEnablers = () => {
             yearsOfExperience: 10
         },
         {
-            id: 9,
+            id: 10,
             name: "Anita Arya",
             photo: "../../images/Enablers/AnitaArya.jpg",
             title: "President, Damini ki Awaaz-NGO",
@@ -96,7 +106,88 @@ const AllEnablers = () => {
             expertise: ["Awareness", "Women Empowerment", "Social"],
             region: "Bhopal",
             yearsOfExperience: 10
-        }
+        },
+        {
+            id: 11,
+            name: "Yashashree Chauhan",
+            photo: "../../images/Enablers/YashashreeChauhan.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 12,
+            name: "Poonam shroti",
+            photo: "../../images/Enablers/PoonamShroti.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 13,
+            name: "Bhakti Sharma",
+            photo: "../../images/Enablers/BhaktiSharma.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 14,
+            name: "Alpa Rawal",
+            photo: "../../images/Enablers/AlpaRawal.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 15,
+            name: "CA. Vaishali Baheti",
+            photo: "../../images/Enablers/VaishaliBaheti.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 16,
+            name: "Dr. Rashmi Moghe Hirve",
+            photo: "../../images/Enablers/RashmiMoghe.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 17,
+            name: "RJ Sukriti",
+            photo: "../../images/Enablers/RJSukriti.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+        {
+            id: 18,
+            name: "Anuradha Joshi",
+            photo: "../../images/Enablers/AnuradhaJoshi.jpg",
+            title: "President, Damini ki Awaaz-NGO",
+            description: "Working member in ICC(SSB, DoorDarshan)",
+            expertise: ["Awareness", "Women Empowerment", "Social"],
+            region: "Bhopal",
+            yearsOfExperience: 10
+        },
+
 
     ];
 
