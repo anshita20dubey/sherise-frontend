@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
     const [activeSection, setActiveSection] = useState("");
@@ -149,7 +149,13 @@ const Navbar = () => {
         <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50 px-4 md:px-6 py-4 flex justify-between items-center">
             {/* Logo */}
             <div className="text-white text-2xl font-bold">
-                <img className="w-[150px] md:w-[250px] h-auto object-contain" src="/images/logo.png" alt="Logo" />
+                <Link to="/">
+                    <img
+                        className="w-[150px] md:w-[250px] h-auto object-contain cursor-pointer"
+                        src="/images/logo.png"
+                        alt="Logo"
+                    />
+                </Link>
             </div>
 
             {/* Desktop Navigation */}
