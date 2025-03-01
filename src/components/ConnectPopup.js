@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import API_URL from "./config";
 
 const ConnectPopup = ({ enablerName, onClose }) => {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    question: ''
+    name: "",
+    email: "",
+    question: "",
   });
 
   // Auto-close after successful submission
@@ -21,9 +22,9 @@ const ConnectPopup = ({ enablerName, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -31,12 +32,12 @@ const ConnectPopup = ({ enablerName, onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/inquiry", {
+      const response = await fetch(`${API_URL}/api/inquiry`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          enabler: enablerName
+          enabler: enablerName,
         }),
       });
 
@@ -66,13 +67,25 @@ const ConnectPopup = ({ enablerName, onClose }) => {
       <div className="bg-black rounded-lg border border-gray-800 shadow-2xl w-full max-w-md mx-4 overflow-hidden transform transition-all animate-fadeIn relative z-10">
         {/* Header */}
         <div className="px-6 py-4 flex justify-between items-center border-b border-gray-800">
-          <h3 className="text-lg font-medium text-white">Connect with <span className="text-green-400">{enablerName}</span></h3>
+          <h3 className="text-lg font-medium text-white">
+            Connect with <span className="text-green-400">{enablerName}</span>
+          </h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-green-400 transition-colors duration-200"
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -80,13 +93,18 @@ const ConnectPopup = ({ enablerName, onClose }) => {
         {/* Message Display with animation */}
         {message && (
           <div
-            className={`px-6 py-3 text-sm animate-fadeIn ${message.includes("✅")
+            className={`px-6 py-3 text-sm animate-fadeIn ${
+              message.includes("✅")
                 ? "bg-black text-green-400 border-l-4 border-green-400"
                 : "bg-black text-red-400 border-l-4 border-red-400"
-              }`}
+            }`}
           >
             {message}
-            {message.includes("✅") && <span className="ml-2 italic text-xs text-gray-400">Closing in 2 seconds...</span>}
+            {message.includes("✅") && (
+              <span className="ml-2 italic text-xs text-gray-400">
+                Closing in 2 seconds...
+              </span>
+            )}
           </div>
         )}
 
@@ -94,7 +112,10 @@ const ConnectPopup = ({ enablerName, onClose }) => {
         <form onSubmit={handleSubmit} className="p-6 bg-black text-gray-300">
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-300"
+              >
                 Name
               </label>
               <input
@@ -109,7 +130,10 @@ const ConnectPopup = ({ enablerName, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-300"
+              >
                 Email
               </label>
               <input
@@ -124,7 +148,10 @@ const ConnectPopup = ({ enablerName, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="question" className="block text-sm font-medium text-gray-300">
+              <label
+                htmlFor="question"
+                className="block text-sm font-medium text-gray-300"
+              >
                 Your Message
               </label>
               <textarea
@@ -134,7 +161,9 @@ const ConnectPopup = ({ enablerName, onClose }) => {
                 required
                 value={formData.question}
                 onChange={handleChange}
-                placeholder={`Hi ${enablerName.split(' ')[0]}, I would like to connect with you...`}
+                placeholder={`Hi ${
+                  enablerName.split(" ")[0]
+                }, I would like to connect with you...`}
                 className="mt-1 block w-full bg-gray-900 border border-gray-800 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all duration-200"
               />
             </div>
@@ -144,7 +173,7 @@ const ConnectPopup = ({ enablerName, onClose }) => {
             <button
               type="submit"
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-green-400 transition-all duration-200"
-              style={{ backgroundColor: '#48d494' }}
+              style={{ backgroundColor: "#48d494" }}
             >
               Submit
             </button>
@@ -154,6 +183,5 @@ const ConnectPopup = ({ enablerName, onClose }) => {
     </div>
   );
 };
-
 
 export default ConnectPopup;
