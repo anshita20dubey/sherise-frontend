@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Activity, Users, Banana, Heart, HelpCircle, Send } from 'lucide-react';
+import { Activity, Users, Banana, Heart, HelpCircle, Send } from 'lucide-react';
 import Footer from '../components/Footer';
 import Enablers from '../components/Enablers';
 import Chatbot from '../components/Chatbot';
@@ -27,7 +27,6 @@ const Home = () => {
         "../../images/About/5.jpg",
         "../../images/About/6.jpg",
         "../../images/About/7.jpg",
-
     ];
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -47,24 +46,11 @@ const Home = () => {
         });
     }, []);
 
-    // Form states
-    const [joinFormData, setJoinFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        companyName: '',
-        message: ''
-    });
-
     const [helpFormData, setHelpFormData] = useState({
         name: '',
         email: '',
         question: ''
     });
-
-    // Form submission states
-    const [joinSubmitting, setJoinSubmitting] = useState(false);
-    const [joinSubmitStatus, setJoinSubmitStatus] = useState(null);
 
     const [helpSubmitting, setHelpSubmitting] = useState(false);
     const [helpSubmitStatus, setHelpSubmitStatus] = useState(null);
@@ -165,54 +151,29 @@ const Home = () => {
         }
     };
 
-    // Check which section is in view
+    // Use Intersection Observer to detect when stats section is visible
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + 100; // Adding offset for fixed navbar
-
-            // Check which section is currently in view
-            if (homeRef.current && scrollPosition < homeRef.current.offsetHeight) {
-                setActiveSection('home');
-            } else if (aboutRef.current && scrollPosition < aboutRef.current.offsetTop + aboutRef.current.offsetHeight) {
-                setActiveSection('about');
-            } else if (statsRef.current && scrollPosition < statsRef.current.offsetTop + statsRef.current.offsetHeight) {
-                setActiveSection('stats');
-            } else if (enablersRef.current && scrollPosition < enablersRef.current.offsetTop + enablersRef.current.offsetHeight) {
-                setActiveSection('enablers');
-            } else if (contactRef.current && scrollPosition < contactRef.current.offsetTop + contactRef.current.offsetHeight) {
-                setActiveSection('contact');
-            } else if (quickHelpRef.current) {
-                setActiveSection('quickHelp');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setStatsVisible(true);
+                    }
+                });
+            },
+            {
+                threshold: 0.5 // Trigger when 50% of the element is visible
             }
+        );
 
-            // Check if stats section is visible
-            if (statsRef.current) {
-                const statsPosition = statsRef.current.getBoundingClientRect();
-                if (statsPosition.top < window.innerHeight * 0.75 && statsPosition.bottom >= 0) {
-                    setStatsVisible(true);
-                }
-            }
-
-            // Check if enablers section is visible
-            if (enablersRef.current) {
-                const enablersPosition = enablersRef.current.getBoundingClientRect();
-                if (enablersPosition.top < window.innerHeight * 0.75 && enablersPosition.bottom >= 0) {
-                    setEnablersVisible(true);
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Check initial position
-
-        // Start the greeting animation after a short delay
-        const animationTimer = setTimeout(() => {
-            setAnimationComplete(true);
-        }, 1000);
+        if (statsRef.current) {
+            observer.observe(statsRef.current);
+        }
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(animationTimer);
+            if (statsRef.current) {
+                observer.unobserve(statsRef.current);
+            }
         };
     }, []);
 
@@ -226,7 +187,7 @@ const Home = () => {
         const animateCount = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const elapsedTime = timestamp - startTime;
-            const duration = 2000; // 2 seconds for count animation
+            const duration = 1000;
             const progress = Math.min(elapsedTime / duration, 1);
 
             // Easing function for smoother animation
@@ -251,6 +212,15 @@ const Home = () => {
             cancelAnimationFrame(animationFrameId);
         };
     }, [statsVisible]);
+
+    // Set animationComplete to true after a short delay when the component mounts
+    useEffect(() => {
+        const animationTimer = setTimeout(() => {
+            setAnimationComplete(true);
+        }, 500); // Adjust the delay as needed
+
+        return () => clearTimeout(animationTimer);
+    }, []);
 
     return (
         <div className="relative w-full font-sans">
@@ -313,7 +283,7 @@ const Home = () => {
                     {/* Stats Section - Responsive grid */}
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-16 sm:mb-20 md:mb-24">
                         {/* Members Stats */}
-                        <div className={`flex flex-col items-center p-4 transition-all duration-700 ease-out ${statsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                        <div className={`flex flex-col items-center p-4 transition-all duration-700`}>
                             <div className="flex items-center justify-center mb-2 sm:mb-3">
                                 <Activity className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
                             </div>
@@ -322,7 +292,7 @@ const Home = () => {
                         </div>
 
                         {/* Daily Visitors Stats */}
-                        <div className={`flex flex-col items-center p-4 transition-all duration-700 delay-100 ease-out ${statsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                        <div className={`flex flex-col items-center p-4 transition-all duration-700 `}>
                             <div className="flex items-center justify-center mb-2 sm:mb-3">
                                 <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
                             </div>
@@ -331,7 +301,7 @@ const Home = () => {
                         </div>
 
                         {/* Programs Stats */}
-                        <div className={`flex flex-col items-center p-4 transition-all duration-700 delay-200 ease-out ${statsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                        <div className={`flex flex-col items-center p-4 transition-all duration-700`}>
                             <div className="flex items-center justify-center mb-2 sm:mb-3">
                                 <Banana className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
                             </div>
@@ -340,7 +310,7 @@ const Home = () => {
                         </div>
 
                         {/* Impact Stats */}
-                        <div className={`flex flex-col items-center p-4 transition-all duration-700 delay-300 ease-out ${statsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+                        <div className={`flex flex-col items-center p-4 transition-all duration-700 `}>
                             <div className="flex items-center justify-center mb-2 sm:mb-3">
                                 <Heart className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
                             </div>
@@ -352,7 +322,7 @@ const Home = () => {
                     {/* Content Section - Stack on mobile, side by side on larger screens */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                         {/* Left side text content */}
-                        <div className={`transition-all duration-1000 ease-out ${statsVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-10'}`}>
+                        <div className={`transition-all duration-1000 `}>
                             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-emerald-400 mb-4 sm:mb-6 md:mb-8 leading-tight">
                                 Mission of SheRise<br className="hidden sm:block" />Club
                             </h2>
@@ -376,7 +346,7 @@ const Home = () => {
                         </div>
 
                         {/* Visible current image with animation */}
-                        <div className={`relative transition-all duration-1000 ease-out ${statsVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-10'}`}>
+                        <div className={`relative transition-all duration-1000 `}>
                             <img
                                 src={images[currentImageIndex]}
                                 alt={`SheRise members ${currentImageIndex + 1}`}
