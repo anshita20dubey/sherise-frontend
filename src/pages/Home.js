@@ -6,6 +6,7 @@ import Chatbot from "../components/Chatbot";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import API_URL from "../components/config";
+
 const Home = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
