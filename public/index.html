@@ -47,7 +47,207 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div class="theater">
+
+
+    <!-- Stage Lighting -->
+    <div class="stage-lighting"></div>
+
+    <!-- Dust Particles Container -->
+    <div class="dust-container"></div>
+
+
+    <!-- Curtains -->
+    <div class="curtain-container">
+      <div class="curtain curtain-left">
+        <div class="curtain-panel"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+      </div>
+      <div class="curtain curtain-right">
+        <div class="curtain-panel"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="fold"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+        <div class="highlight"></div>
+      </div>
+    </div>
+
+    <!-- Launch Button -->
+    <div class="button-container">
+      <button class="launch-button">
+        <div class="button-outer">
+          <div class="button-inner">
+            <div class="button-text">Launch</div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div id="content-wrapper">
+    <div id="root"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const launchButton = document.querySelector('.launch-button');
+      const curtainLeft = document.querySelector('.curtain-left');
+      const curtainRight = document.querySelector('.curtain-right');
+      const rope = document.querySelector('.rope');
+      const tassel = document.querySelector('.tassel');
+      const stageLight = document.querySelector('.stage-lighting');
+      const websiteContent = document.querySelector('#root');
+      const dustContainer = document.querySelector('.dust-container');
+
+      // Create dust particles
+      function createDustParticles() {
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('dust-particle');
+
+          // Random positions
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+
+          dustContainer.appendChild(particle);
+        }
+      }
+
+      createDustParticles();
+
+      // Initialize GSAP timeline
+      const tl = gsap.timeline({ paused: true });
+
+      // Setup the animation sequence
+      tl.to(launchButton, {
+        duration: 0.5,
+        scale: 0.9,
+        opacity: 0,
+        ease: "back.in(1.7)"
+      })
+        .to(rope, {
+          duration: 1,
+          height: '0%',
+          ease: "power2.inOut"
+        }, "-=0.2")
+        .to(tassel, {
+          duration: 0.8,
+          y: '70vh',
+          ease: "power2.in"
+        }, "-=0.5")
+        .to('.curtain-left', {
+          duration: 2,
+          x: '-100%',
+          ease: "power3.inOut"
+        }, "-=0.2")
+        .to('.curtain-right', {
+          duration: 2,
+          x: '100%',
+          ease: "power3.inOut"
+        }, "-=2")
+        .to(dustContainer, {
+          duration: 0.5,
+          opacity: 1,
+          onComplete: animateDust
+        }, "-=1.5")
+        .to(stageLight, {
+          duration: 1.5,
+          opacity: 1,
+          ease: "power1.inOut"
+        }, "-=1.5")
+        .to(websiteContent, {
+          duration: 0.5,
+          opacity: 1,
+          onComplete: function () {
+            websiteContent.classList.add('visible');
+          }
+        }, "-=0.5");
+
+      // Animate dust particles
+      function animateDust() {
+        const particles = document.querySelectorAll('.dust-particle');
+
+        particles.forEach((particle) => {
+          const startX = parseFloat(particle.style.left);
+          const startY = parseFloat(particle.style.top);
+
+          gsap.to(particle, {
+            duration: 3 + Math.random() * 2,
+            x: -20 + Math.random() * 40,
+            y: 100 + Math.random() * 50,
+            opacity: Math.random() * 0.5,
+            scale: 1 + Math.random() * 2,
+            delay: Math.random() * 0.5,
+            ease: "power1.out"
+          });
+        });
+      }
+
+      // Button event listener
+      launchButton.addEventListener('click', function () {
+        tl.play();
+      });
+
+      // Simulate fabric texture movement
+      const folds = document.querySelectorAll('.fold');
+      folds.forEach(fold => {
+        const randomDelay = Math.random() * 2;
+        gsap.to(fold, {
+          opacity: 0.7 + Math.random() * 0.3,
+          duration: 2 + Math.random(),
+          repeat: -1,
+          yoyo: true,
+          delay: randomDelay
+        });
+      });
+
+      // Add subtle movement to highlights
+      const highlights = document.querySelectorAll('.highlight');
+      highlights.forEach(highlight => {
+        const randomDelay = Math.random() * 3;
+        gsap.to(highlight, {
+          opacity: 0.05 + Math.random() * 0.1,
+          duration: 3 + Math.random() * 2,
+          repeat: -1,
+          yoyo: true,
+          delay: randomDelay
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
