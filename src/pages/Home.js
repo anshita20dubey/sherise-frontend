@@ -276,7 +276,7 @@ const Home = () => {
           >
             Welcome To
             <br />
-            <span className="text-emerald-400">SheRise Club</span>
+            <span className="text-[#36AF7A]">SheRise Club</span>
           </h1>
 
           <p
@@ -328,7 +328,7 @@ const Home = () => {
               className={`flex flex-col items-center p-4 transition-all duration-700`}
             >
               <div className="flex items-center justify-center mb-2 sm:mb-3">
-                <Activity className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
+                <Activity className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#36AF7A]" />
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
                 {counts.members.toLocaleString()}
@@ -341,7 +341,7 @@ const Home = () => {
               className={`flex flex-col items-center p-4 transition-all duration-700 `}
             >
               <div className="flex items-center justify-center mb-2 sm:mb-3">
-                <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
+                <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#36AF7A]" />
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
                 {counts.visitors}
@@ -356,7 +356,7 @@ const Home = () => {
               className={`flex flex-col items-center p-4 transition-all duration-700`}
             >
               <div className="flex items-center justify-center mb-2 sm:mb-3">
-                <Banana className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
+                <Banana className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#36AF7A]" />
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
                 {counts.programs}
@@ -371,7 +371,7 @@ const Home = () => {
               className={`flex flex-col items-center p-4 transition-all duration-700 `}
             >
               <div className="flex items-center justify-center mb-2 sm:mb-3">
-                <Heart className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-emerald-400" />
+                <Heart className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#36AF7A]" />
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
                 {counts.impact.toLocaleString()}
@@ -384,7 +384,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left side text content */}
             <div className={`transition-all duration-1000 `}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-emerald-400 mb-4 sm:mb-6 md:mb-8 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#36AF7A] mb-4 sm:mb-6 md:mb-8 leading-tight">
                 Mission of SheRise
                 <br className="hidden sm:block" />
                 Club
@@ -398,7 +398,7 @@ const Home = () => {
                 Madhya Pradesh.
               </p>
               <button
-                className="bg-emerald-400 hover:bg-emerald-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded transition-colors duration-300 font-medium uppercase tracking-wide text-xs sm:text-sm"
+                className="bg-[#36AF7A] hover:bg-emerald-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded transition-colors duration-300 font-medium uppercase tracking-wide text-xs sm:text-sm"
                 onClick={handletouch}
               >
                 Get in touch

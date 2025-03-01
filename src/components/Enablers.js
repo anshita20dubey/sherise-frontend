@@ -1,13 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import ConnectPopup from './ConnectPopup'; // Your existing ConnectPopup component
 
 const Enablers = ({ enablersRef, isVisible }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const sliderRef = useRef(null);
     const navigate = useNavigate();
+    const [selectedEnabler, setSelectedEnabler] = useState(null);
 
-    // Sample data for enablers
+    // Handle clicking the Connect button
+    const handleEnablerClick = (enabler) => {
+        setSelectedEnabler(enabler);
+    };
+
+    const nextSlide = () => {
+        setActiveIndex((prevIndex) => (prevIndex === enablers.length - 1 ? 0 : prevIndex + 1));
+    };
+
+    const prevSlide = () => {
+        setActiveIndex((prevIndex) => (prevIndex === 0 ? enablers.length - 1 : prevIndex - 1));
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 10000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Your enablers array (unchanged)
     const enablers = [
         {
             id: 1,
@@ -158,28 +180,6 @@ const Enablers = ({ enablersRef, isVisible }) => {
         },
     ];
 
-    const nextSlide = () => {
-        setActiveIndex((prevIndex) => (prevIndex === enablers.length - 1 ? 0 : prevIndex + 1));
-    };
-
-    const prevSlide = () => {
-        setActiveIndex((prevIndex) => (prevIndex === 0 ? enablers.length - 1 : prevIndex - 1));
-    };
-
-    // Navigate to all enablers page
-    const handleConnect = () => {
-        navigate('/allenablers');
-    };
-
-    // Auto rotate slides
-    useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 10000);
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <section
             ref={enablersRef}
@@ -197,22 +197,21 @@ const Enablers = ({ enablersRef, isVisible }) => {
                     </p>
                 </div>
 
-                <div className="relative max-w-5xl mx-auto transition-all duration-1000 delay-300">
-                    {/* Slider navigation arrows - hidden on smallest screens */}
+                <div className="relative max-w-5xl mx-auto">
+                    {/* Slider navigation arrows */}
                     <button
                         onClick={prevSlide}
-                        className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 md:p-3 z-10 transition-all duration-300"
+                        className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 md:-translate-x-12 bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 md:p-3 z-10 transition-all duration-300"
                         aria-label="Previous slide"
                     >
-                        <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </button>
-
                     <button
                         onClick={nextSlide}
-                        className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 md:p-3 z-10 transition-all duration-300"
+                        className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 md:translate-x-12 bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 md:p-3 z-10 transition-all duration-300"
                         aria-label="Next slide"
                     >
-                        <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </button>
 
                     <div ref={sliderRef} className="overflow-hidden">
@@ -221,34 +220,26 @@ const Enablers = ({ enablersRef, isVisible }) => {
                             style={{ transform: `translateX(-${activeIndex * 100}%)` }}
                         >
                             {enablers.map((enabler, index) => (
-                                <div key={index} className="min-w-full p-2 md:p-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                                        {/* Photo container - make it square on mobile */}
-                                        <div className="relative group w-full aspect-square md:aspect-auto md:h-60 overflow-hidden rounded-lg shadow-lg mx-auto">
-                                            {/* Photo with overlay */}
+                                <div key={index} className="min-w-full p-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 items-center">
+                                        {/* Larger Circular Image Container */}
+                                        <div className="w-60 h-60 mt-4 md:w-80 md:h-80 mx-auto md:mx-0 aspect-square rounded-full overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105">
                                             <img
                                                 src={enabler.photo}
                                                 alt={enabler.name}
-                                                className="w-full h-full object-cover md:object-contain transition-opacity duration-300 group-hover:opacity-30"
+                                                className="w-full h-full object-cover object-top rounded-full"
                                             />
-
-                                            {/* Hover overlay - visible on tap for mobile */}
-                                            <div className="absolute inset-0 bg-[#48d494]/80 opacity-0 group-hover:opacity-100 active:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-black">
-                                                <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">{enabler.name}</h3>
-                                                <p className="text-xs md:text-sm font-medium mb-1 md:mb-2">{enabler.title}</p>
-                                                <p className="text-xs text-center line-clamp-4 md:line-clamp-none">{enabler.description}</p>
-                                            </div>
                                         </div>
 
-                                        {/* Text content */}
-                                        <div className="flex flex-col justify-center mt-4 md:mt-0">
-                                            <h3 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 text-[#48d494] animate-fade-in-up">{enabler.name}</h3>
-                                            <p className="text-lg md:text-xl text-white mb-3 md:mb-6">{enabler.title}</p>
-                                            <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-8 leading-relaxed line-clamp-3 md:line-clamp-none">{enabler.description}</p>
-                                            <div className="w-12 md:w-16 h-1 bg-[#48d494] mb-4 md:mb-8"></div>
+                                        {/* Text Content with Reduced Whitespace */}
+                                        <div className="flex flex-col justify-center text-center md:text-left mt-4 md:mt-0">
+                                            <h3 className="text-xl md:text-2xl font-bold mb-1 text-[#48d494]">{enabler.name}</h3>
+                                            <p className="text-base md:text-lg text-white mb-2">{enabler.title}</p>
+                                            <p className="text-sm md:text-base text-gray-300 mb-3 leading-relaxed line-clamp-4 md:line-clamp-none">{enabler.description}</p>
+                                            <div className="w-16 h-1 bg-[#48d494] mb-3 mx-auto md:mx-0"></div>
                                             <button
-                                                onClick={handleConnect}
-                                                className="self-start bg-transparent hover:bg-[#48d494]/20 text-[#48d494] border border-[#48d494] px-4 md:px-6 py-1 md:py-2 text-sm md:text-base rounded-md transition-colors duration-300"
+                                                onClick={() => handleEnablerClick(enabler)} // Fixed to pass enabler object
+                                                className="self-center md:self-start bg-transparent hover:bg-[#48d494]/20 text-[#48d494] border border-[#48d494] px-4 py-1.5 rounded-md text-sm transition-colors duration-300"
                                             >
                                                 Connect
                                             </button>
@@ -259,8 +250,26 @@ const Enablers = ({ enablersRef, isVisible }) => {
                         </div>
                     </div>
 
-                    {/* Mobile navigation arrows */}
-                    <div className="flex justify-between sm:hidden mt-4">
+                    {/* Popup Rendering */}
+                    {selectedEnabler && (
+                        <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
+                            {/* Backdrop */}
+                            <div
+                                className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+                                onClick={() => setSelectedEnabler(null)}
+                            ></div>
+                            {/* Your ConnectPopup Component */}
+                            <div className="relative z-50">
+                                <ConnectPopup
+                                    enablerName={selectedEnabler.name}
+                                    onClose={() => setSelectedEnabler(null)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Mobile Navigation Arrows */}
+                    <div className="flex justify-between sm:hidden mt-6">
                         <button
                             onClick={prevSlide}
                             className="bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 transition-all duration-300"
@@ -268,7 +277,6 @@ const Enablers = ({ enablersRef, isVisible }) => {
                         >
                             <ChevronLeft className="w-5 h-5 text-white" />
                         </button>
-
                         <button
                             onClick={nextSlide}
                             className="bg-[#48d494]/20 hover:bg-[#48d494]/40 rounded-full p-2 transition-all duration-300"
@@ -278,24 +286,24 @@ const Enablers = ({ enablersRef, isVisible }) => {
                         </button>
                     </div>
 
-                    {/* Pagination dots */}
-                    <div className="flex justify-center mt-4 md:mt-8 space-x-1 md:space-x-2">
+                    {/* Pagination Dots */}
+                    <div className="flex justify-center mt-6 space-x-2">
                         {enablers.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
-                                className={`w-2 md:w-3 h-2 md:h-3 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-[#48d494] w-4 md:w-6' : 'bg-gray-500'}`}
+                                className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-[#48d494] w-4' : 'bg-gray-500'}`}
                                 aria-label={`Go to slide ${index + 1}`}
                             />
                         ))}
                     </div>
                 </div>
 
-                {/* View all enablers button */}
-                <div className={`text-center mt-8 md:mt-16 transition-all duration-1000 delay-600 `}>
+                {/* View All Enablers Button */}
+                <div className="text-center mt-12">
                     <button
                         onClick={() => navigate('/allenablers')}
-                        className="bg-[#48d494] text-black px-6 md:px-8 py-2 md:py-3 text-sm md:text-base rounded-md font-medium hover:bg-[#3bc17f] transition-colors inline-flex items-center"
+                        className="bg-[#48d494] text-black px-6 py-2 rounded-md font-medium hover:bg-[#3bc17f] transition-colors duration-300"
                     >
                         View All Enablers
                     </button>

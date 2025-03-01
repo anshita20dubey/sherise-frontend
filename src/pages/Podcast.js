@@ -12,11 +12,52 @@ const PodcastPage = () => {
         {
             id: 1,
             title: "Nirmatri 2.0",
-            description: "Exploring the intersection of creativity and mindful living",
+            description: "Exploring the intersection of creativity and mindful living!",
             platform: "Instagram",
             link: "https://www.instagram.com/p/C9H100lRoCV/",
             image: "../../images/Podcasts/Sicsatna.png"
-        }
+        },
+        {
+            id: 2,
+            title: "Aarohini",
+            description: "Empowering Women Startups in Sagar!",
+            platform: "Instagram",
+            link: "https://www.instagram.com/reel/C1Wv0inoSvI/",
+            image: "../../images/Podcasts/Spark.jpg"
+        },
+        {
+            id: 3,
+            title: "RISE Jhansi Hackathon 2.0",
+            description: "Exciting conversation about one of the biggest innovation events in Jhansi—Young Innovators' Conclave & RISE Jhansi Hackathon 2.0! ",
+            platform: "Instagram",
+            link: "https://www.instagram.com/reel/DAs28MCvfye/",
+            image: "../../images/Podcasts/PriyankaJain2.jpg"
+        },
+        {
+            id: 4,
+            title: "Dedicated Resources Series",
+            description: "Explore proven strategies and innovative approaches to fostering a motivated and committed workforce.",
+            platform: "Instagram",
+            link: "https://www.instagram.com/reel/C_5WBo7vb5E/",
+            image: "../../images/Podcasts/TishyaAgrawal1.jpg"
+        },
+        {
+            id: 5,
+            title: "Dedicated Resources Series",
+            description: "Get ready to dive deep into the fascinating world of dedicated resources with our insightful host Tishya Agarwal.",
+            platform: "Instagram",
+            link: "https://www.instagram.com/reel/C9KF7GbSRes/",
+            image: "../../images/Podcasts/TishyaAgrawal2.jpg"
+        },
+        {
+            id: 6,
+            title: "Women Entrepreneurship Development Cell",
+            description: "Get ready to embark on an empowering journey with Priyanka Jain, startup consultant at RISE Jhansi Incubation Center",
+            platform: "Instagram",
+            link: "https://www.instagram.com/reel/C86qI5JSlcE/",
+            image: "../../images/Podcasts/PriyankaJain1.jpg"
+        },
+
     ];
 
     return (
