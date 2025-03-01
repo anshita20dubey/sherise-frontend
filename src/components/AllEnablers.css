@@ -1,4 +1,21 @@
 /* Add these animations to your global CSS file or create a new animations.css file */
+/* Add these to your existing AllEnablers.css */
+.card-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.description-container {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Ensure line-clamp works */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 @keyframes fadeIn {
     from {

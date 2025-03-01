@@ -12,6 +12,7 @@
     "crypto-browserify": "^3.12.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
     "init": "^0.1.2",
     "lucide-react": "^0.475.0",
     "openai": "^4.85.4",
