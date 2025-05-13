@@ -185,7 +185,7 @@ const Navbar = () => {
             {/* Help Button - Hidden on mobile, shown on medium screens */}
             <button
                 onClick={handleQuickHelpClick}
-                className="hidden md:flex bg-emerald-400 hover:bg-emerald-500 text-white px-4 lg:px-6 py-2 rounded-md transition-colors items-center text-sm lg:text-base"
+                className="hidden md:flex bg-[#36AF7A] hover:bg-emerald-500 text-white px-4 lg:px-6 py-2 rounded-md transition-colors items-center text-sm lg:text-base"
             >
                 Need Help? <ArrowRight className="ml-2 h-4 w-4" />
             </button>
@@ -228,7 +228,7 @@ const Navbar = () => {
                     </a>
                     <button
                         onClick={handleQuickHelpClick}
-                        className="bg-emerald-400 hover:bg-emerald-500 text-white px-4 py-2 rounded-md transition-colors flex items-center justify-center w-full"
+                        className="bg-[#379D72] hover:bg-emerald-500 text-white px-4 py-2 rounded-md transition-colors flex items-center justify-center w-full"
                     >
                         Need Help? <ArrowRight className="ml-2 h-4 w-4" />
                     </button>

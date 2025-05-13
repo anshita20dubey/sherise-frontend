@@ -42,7 +42,17 @@ const WebinarsPage = () => {
             duration: "25 minutes",
             thumbnail: "../../images/webinars/Comprehensive.png",
             youtubeLink: "https://www.youtube.com/watch?v=l4sPStuvOTA"
-        }
+        },
+        {
+            id: 5,
+            title: "Design Thinking Session 3",
+            description: "Join us for an enlightening session organized by Satna Incubation center.",
+            date: "September 8, 2023",
+            duration: "25 minutes",
+            thumbnail: "../../images/webinars/Comprehensive.png",
+            youtubeLink: "https://www.youtube.com/watch?v=l4sPStuvOTA"
+        },
+
     ];
 
     const [filter, setFilter] = useState('all');

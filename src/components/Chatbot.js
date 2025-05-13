@@ -174,7 +174,7 @@ function Chatbot() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-[10px] sm:text-xs text-gray-500">Eimee</span>
+                  <span className="text-[10px] sm:text-xs text-gray-500">Astraa</span>
                 </div>
               )}
 
@@ -206,7 +206,7 @@ function Chatbot() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <span className="text-[10px] sm:text-xs text-gray-500">Eimee</span>
+                <span className="text-[10px] sm:text-xs text-gray-500">Astraa</span>
               </div>
               <div className="bg-white rounded-t-xl rounded-br-xl py-2 px-3 shadow-sm">
                 <div className="flex space-x-1">
@@ -238,11 +238,11 @@ function Chatbot() {
             placeholder="Type your message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-1 px-2 sm:px-3 py-2 text-sm text-gray-800 placeholder-gray-400 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:border-[#48d494] focus:ring-1 focus:ring-[#48d494] transition-colors"
+            className="flex-1 px-2 sm:px-3 py-2 text-sm text-gray-800 placeholder-gray-400 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:border-[#36AF7A] focus:ring-1 focus:ring-[#36AF7A] transition-colors"
           />
           <button
             type="submit"
-            className="px-2 sm:px-3 py-2 bg-gradient-to-r from-[#48d494] to-green-400 hover:opacity-90 text-white rounded-lg transition-all shadow-sm flex items-center justify-center min-w-[40px] min-h-[40px]"
+            className="px-2 sm:px-3 py-2 bg-gradient-to-r from-[#36AF7A] to-[#36AF7A] hover:opacity-90 text-white rounded-lg transition-all shadow-sm flex items-center justify-center min-w-[40px] min-h-[40px]"
             aria-label="Send message"
           >
             <Send className="w-4 h-4" />
@@ -266,8 +266,12 @@ function Chatbot() {
             {/* Navbar / Header - Always visible */}
             <div className="bg-white p-3 sm:p-4 flex items-center justify-between border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center space-x-2 sm:space-x-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-50 flex items-center justify-center">
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#48d494]" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden shadow-sm">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJIn2lCLQPTvUze5FrfuxIoINxjHoiuwW9Cw&s"
+                    alt="Bot Avatar"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <span className="text-sm sm:text-base text-gray-900 font-semibold">SheRise Club Support</span>
               </div>
@@ -294,7 +298,7 @@ function Chatbot() {
       {!isOpen && (
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#48d494] to-green-400 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-105 transition-transform"
+          className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#36AF7A] to-[#36AF7A] rounded-full shadow-lg flex items-center justify-center text-white hover:scale-105 transition-transform"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
