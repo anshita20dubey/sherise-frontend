@@ -120,19 +120,20 @@ const Home = () => {
     setHelpSubmitStatus(null);
 
     try {
-      const response = await fetch(`${API_URL}/api/quick-help`, {
+      const response = await fetch(`${API_URL}/api/help`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: helpFormData.name,
-          email: helpFormData.email,
+          requesterName: helpFormData.name, // ✅ सही
+          requesterEmail: helpFormData.email, // ✅ सही
           question: helpFormData.question,
         }),
       });
 
       const data = await response.json();
+      console.log("Server response:", data); // 👀 Debug
 
       if (response.ok) {
         setHelpSubmitStatus({
@@ -140,7 +141,6 @@ const Home = () => {
           message:
             "Your question has been submitted. We'll get back to you soon!",
         });
-        // Reset form
         setHelpFormData({
           name: "",
           email: "",
